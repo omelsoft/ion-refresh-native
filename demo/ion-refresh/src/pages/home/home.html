@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ion Refresh Native
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-refresher (pullMin)="90" ion-refresh-native (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="ios-refresh-outline" refreshingSpinner="crescent"></ion-refresher-content>
+	  </ion-refresher>
+  This directive extends the functionality of the ion-refresher component.
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+  </p>
+</ion-content>
