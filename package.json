@@ -1,0 +1,40 @@
+{
+	"name": "ion-refresh-native",
+	"version": "1.0.0",
+	"description": "A directive for Ionic framework for implementing native like pull-to-refresh.",
+	"main": "./dist/index.js",
+	"typings": "./dist/index.d.ts",
+	"scripts": {
+		"ngc": "ngc",
+		"build": "rm -rf dist && npm run ngc",
+		"publishPackage": "npm run build && npm publish"
+	},
+	"repository": {
+		"type": "git",
+        "url": "git+https://github.com/omelsoft/ion-refresh-native.git"
+	},
+	"keywords": [
+		"ionic",
+		"ionic2",
+		"ionic3",
+		"pull-to-refresh",
+		"refresher",
+		"ion-fresher"
+	],
+	"author": "Cromwell Bayon <omelsoft@gmail.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@angular/common": "5.0.3",
+		"@angular/compiler": "5.0.3",
+		"@angular/compiler-cli": "5.0.3",
+		"@angular/core": "5.0.3",
+		"@angular/forms": "^5.2.7",
+		"@angular/platform-browser": "5.0.3",
+		"@angular/platform-browser-dynamic": "5.0.3",
+		"@types/node": "^9.4.6",
+		"ionic-angular": "3.9.2",
+		"rxjs": "5.5.2",
+		"typescript": "2.4.2",
+		"zone.js": "0.8.18"
+	}
+}

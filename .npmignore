@@ -1,0 +1,8 @@
+src
+node_modules
+.gitignore
+.npmignore
+tsconfig.json
+demo
+.idea
+.editorconfig
