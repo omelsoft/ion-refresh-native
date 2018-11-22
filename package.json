@@ -6,12 +6,14 @@
 	"typings": "./dist/index.d.ts",
 	"scripts": {
 		"ngc": "ngc",
-		"build": "rm -rf dist && npm run ngc",
-		"publishPackage": "npm run build && npm publish"
+		"build": "rm -rf dist && npm run ngc && npm run copy-scss",
+		"build-css": "node-sass --include-path scss src/scss/ion-refresh-native.scss   src/css/ion-refresh-native.css",
+		"copy-scss": "copyfiles -f ./src/scss/*.scss dist/scss/",
+		"publishPackage": "npm run build && npm publish --access public"
 	},
 	"repository": {
 		"type": "git",
-        "url": "git+https://github.com/omelsoft/ion-refresh-native.git"
+		"url": "git+https://github.com/omelsoft/ion-refresh-native.git"
 	},
 	"keywords": [
 		"ionic",
@@ -32,7 +34,9 @@
 		"@angular/platform-browser": "5.0.3",
 		"@angular/platform-browser-dynamic": "5.0.3",
 		"@types/node": "^9.4.6",
+		"copyfiles": "^2.1.0",
 		"ionic-angular": "3.9.2",
+		"node-sass": "^4.10.0",
 		"rxjs": "5.5.2",
 		"typescript": "2.4.2",
 		"zone.js": "0.8.18"
