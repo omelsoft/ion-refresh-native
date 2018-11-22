@@ -5,10 +5,10 @@
 
 # Ion Refresh Native Directive
 
-> This directive `ion-refresh-native` extends the functionality of the `ion-refresher` or the **Pull-To-Refresh** component of the Ionic Framework. This has been tested with Ionic v3.
+> This directive `ion-refresh-native` extends the functionality of the `ion-refresher` or the **Pull-To-Refresh** component of the [Ionic Framework][1]. This has been tested with Ionic v3.
 
 ### Installation ###
-You can install the module from NPM using the following command.
+You can install the module from [NPM][2] using the following command.
 
 `npm i ion-refresh-native --save` or `npm install ion-refresh-native --save`
 
@@ -49,5 +49,12 @@ export class AppModule {}
 
 </ion-content>
 ```
+### Demo ###
+See it live in action in this [demo][3]
+
 ### Notes ##
 This is still in early stage. If any of you wants to help improve this module, please do send PR's.
+
+[1]: https://ionicframework.com/
+[2]: https://www.npmjs.com/package/ion-refresh-native
+[3]: https://omelsoft.github.io/ion-refresh-native/docs/ion-refresh/www/index.html
