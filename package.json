@@ -1,6 +1,6 @@
 {
 	"name": "ion-refresh-native",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "A directive for Ionic framework for implementing native like pull-to-refresh.",
 	"main": "./dist/index.js",
 	"typings": "./dist/index.d.ts",
