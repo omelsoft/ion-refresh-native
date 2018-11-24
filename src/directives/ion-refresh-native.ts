@@ -21,7 +21,7 @@ export class IonRefreshNative {
 	handlePull(event) {
 		let ready = false;
 		let rotation = event.deltaY + 100;
-		let max = Number(event.pullMin);
+		let max = Number(event.pullMax);
 
 		if (event.deltaY.toFixed(0) < max.toFixed(0)) {
 
