@@ -17,15 +17,17 @@ You can install the module from [NPM][2] using the following command.
 ```typescript
 import { NgModule } from '@angular/core';
 ...
-import { IonRefreshNative } from 'ion-refresh-native';
+import { IonRefreshNativeModule } from 'ion-refresh-native';
 
 @NgModule({
   declarations: [
-	  ...
-	  IonRefreshNative,
-	  ...
+     ...
   ],
-  imports: [],
+  imports: [
+     ...
+     IonRefreshNativeModule,
+     ...
+  ],
   bootstrap: [IonicApp],
   entryComponents: [],
   providers: []
