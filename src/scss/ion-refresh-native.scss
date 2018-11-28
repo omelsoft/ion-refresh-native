@@ -1,53 +1,54 @@
 ion-content {
-  &.has-refresher {
-    &>.scroll-content {
-      transform: translateY(0px) translateZ(0px) !important;
-      overflow: scroll !important;
-    }
-  }
+   &.has-refresher {
+      &>.scroll-content {
+         transform: translateY(0px) translateZ(0px) !important;
+         overflow: scroll !important;
+      }
+   }
 }
 
 ion-refresher {
-  top: 10px !important;
-  position: absolute;
-  z-index: 9;
+   position: absolute;
+   z-index: 9;
+   top: 0px !important;
 
-  ion-refresher-content {
-    position: relative;
-  }
+   ion-refresher-content {
+      position: relative;
+   }
 
-  .refresher-pulling {
-    position: relative;
-  }
+   .refresher-pulling {
+      position: relative;
+   }
 
-  .refresher-refreshing {
-    transition: ease-in-out 500ms transform;
-  }
+   .refresher-refreshing {
+      transition: ease-in-out 500ms transform;
+   }
 
-  .refresher-pulling-icon {
-    width: 40px;
-    margin: 0 auto;
-    background: white;
-    height: 40px;
-    padding-top: 5px;
-    border-radius: 30px;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.38);
-
-    ion-icon {
-      position: absolute;
+   .refresher-pulling-icon {
       width: 40px;
-      margin-top: -3px;
-      margin-left: -20px;
-    }
-  }
+      margin: 0 auto;
+      background: white;
+      height: 40px;
+      padding-top: 5px;
+      border-radius: 30px;
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.38);
+      position: relative;
 
-  .refresher-refreshing-icon {
-    width: 40px;
-    margin: 0 auto;
-    background: white;
-    height: 40px;
-    padding-top: 5px;
-    border-radius: 30px;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.38);
-  }
+      ion-icon {
+         position: absolute;
+         width: 40px;
+         margin-top: -3px;
+         margin-left: -20px;
+      }
+   }
+
+   .refresher-refreshing-icon {
+      width: 40px;
+      margin: 0 auto;
+      background: white;
+      height: 40px;
+      padding-top: 5px;
+      border-radius: 30px;
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.38);
+   }
 }

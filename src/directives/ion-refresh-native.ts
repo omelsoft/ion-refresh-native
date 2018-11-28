@@ -1,45 +1,100 @@
-import { Directive, ElementRef, Renderer } from '@angular/core';
+import {Directive, ElementRef, Renderer, Input} from '@angular/core';
 
 @Directive({
-  selector: '[ion-refresh-native]', // Attribute selector
-  host: {
-	  '(ionPull)': 'handlePull($event)'
-  }
+   selector: '[ion-refresh-native]', // Attribute selector
+   host: {
+      '(ionStart)': 'handleStart($event)',
+      '(ionPull)': 'handlePull($event)',
+      '(ionRefresh)': 'handleRefresh($event)'
+   }
 })
 export class IonRefreshNative {
+   @Input('ion-refresh-position') ionRefreshPosition: number;
 
-	private ionPulling;
-	private ionPullingIcon;
-	private ionRefreshing;
+   private STATE = {
+      comleting: 'completing',
+      inactive: 'inactive',
+      pulling: 'pulling',
+      ready: 'ready',
+      refreshing: 'refreshing',
+   };
 
-	constructor(
-		public element: ElementRef,
-		public renderer: Renderer
-	) {
-	}
+   private ionPulling;
+   private ionPullingIcon;
+   private ionRefreshing;
 
-	handlePull(event) {
-		let ready = false;
-		let rotation = event.deltaY + 100;
-		let max = Number(event.pullMax);
+   public progress;
+   public rotation;
 
-		if (event.deltaY.toFixed(0) < max.toFixed(0)) {
+   constructor(public element : ElementRef, public renderer : Renderer) {}
 
-			this.ionPulling = this.element.nativeElement.getElementsByClassName('refresher-pulling')[0];
-			this.ionPullingIcon = this.element.nativeElement.getElementsByClassName('refresher-pulling-icon')[0];
-			this.ionRefreshing = this.element.nativeElement.getElementsByClassName('refresher-refreshing')[0];
+   handleStart(event) {
+      if (!this.ionPulling || !this.ionPullingIcon || !this.ionRefreshing) {
+         this.ionPulling = this.element.nativeElement.getElementsByClassName('refresher-pulling-icon')[0];
+         this.ionPullingIcon = document.querySelector('.refresher-pulling-icon > ion-icon');
+         this.ionRefreshing = this.element.nativeElement.getElementsByClassName('refresher-refreshing')[0];
+      }
+   }
 
-			if (event.state == 'pulling' && !ready) {
-				this.renderer.setElementAttribute(this.ionPulling, 'style', 'transition: ease-in-out 250ms transform');
-				this.renderer.setElementAttribute(this.ionPulling, 'style', `top: ${event.deltaY.toFixed(0)}px!important;`);
-				this.renderer.setElementAttribute(this.ionPullingIcon, 'style', 'transition: ease-in-out 250ms transform');
-				this.renderer.setElementAttribute(this.ionPullingIcon, 'style', `transform: rotate(${rotation.toFixed(0)}deg)`);
-			}
-			if (event.state == 'ready' || event.state == 'refreshing') {
-				ready = true;
-				this.renderer.setElementAttribute(this.ionRefreshing, 'style', 'transition: ease-in-out 250ms transform');
-				this.renderer.setElementAttribute(this.ionRefreshing, 'style', `transform: translateY(50px) translateZ(0px)!important;`);
-			}
-		}
-	}
+   handlePull(event) {
+
+      this.progress = event.progress * event.pullMin + event.deltaY;
+      this.rotation = this.progress * 2;
+      this.ionRefreshPosition = this.ionRefreshPosition ? this.ionRefreshPosition : 55;
+
+      if (this.progress < event.pullMax) {
+         this.setStyle(
+               this.ionPulling,
+               'style',
+               `top: ${this.progress}px!important;
+               transition: ease-in-out 250ms top;`
+               );
+         this.setStyle(
+            this.ionPullingIcon,
+            'style',
+            `opacity: ${event.progress};
+            transform: rotate(${this.rotation.toFixed(0)}deg);
+            transition: ease-in-out 300ms transform;`
+            );
+      }
+      if (event.state == this.STATE.ready) {
+         this.setStyle(
+            this.ionPullingIcon,
+            'style',
+            `opacity: ${event.progress};
+            transform: rotate(270deg);
+            transition: ease-in-out 100ms transform;`
+            );
+      }
+   }
+
+   handleRefresh(event) {
+      this.setStyle(
+         this.ionRefreshing,
+         'style',
+         `transform: translateY(${this.ionRefreshPosition}px) translateZ(0px)!important;
+         transition: ease-in-out 1000ms transform;`
+         );
+      this.resetPullingStyle()
+   }
+
+   setStyle(element : ElementRef, attr, value) {
+      this.renderer.setElementAttribute(element, attr, value);
+   }
+
+   resetPullingStyle() {
+      this.setStyle(
+         this.ionPulling,
+         'style',
+         `top: 10px!important;
+         transition: ease-in-out 250ms top;`
+      );
+      this.setStyle(
+         this.ionPullingIcon,
+         'style',
+         `transform: rotate(0deg);opacity:0;
+         transition: ease-in-out 250ms transform;`
+      );
+
+   }
 }

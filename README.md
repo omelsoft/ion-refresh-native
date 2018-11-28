@@ -40,8 +40,7 @@ export class AppModule {}
 ```
 
 ### Implementation ###
-+ Now add the `ion-refresh-native` attribute in the `ion-refresher` component.
-+ Also specified `pullingIcon="ios-refresh-outline"` and `refreshingSpinner="crescent"` so the icons will just blend.
+Now add the `ion-refresh-native` attribute in the `ion-refresher` component.
 ```html
 <ion-content>
 
@@ -51,6 +50,16 @@ export class AppModule {}
 
 </ion-content>
 ```
+
+### Inputs ###
+
+`ion-refresh-position` (optional) Allows you to manually set the position of the icon when the refreshing state kicks off. **Default** is 55.
+
+
+```html
+<ion-refresher ion-refresh-position="55" ion-refresh-native (ionRefresh)="doRefresh($event)"></ion-refresher>
+```
+
 ### Demo ###
 See it live in action in this [demo][3]
 
