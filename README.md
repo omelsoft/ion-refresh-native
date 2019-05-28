@@ -44,7 +44,7 @@ Now add the `ion-refresh-native` attribute in the `ion-refresher` component.
 ```html
 <ion-content>
 
-  <ion-refresher ion-refresh-native (ionRefresh)="doRefresh($event)">
+  <ion-refresher ion-refresh-native (ionRefresh)="doRefresh($event)" #ionRefresher>
     <ion-refresher-content pullingIcon="ios-refresh-outline" refreshingSpinner="crescent"></ion-refresher-content>
   </ion-refresher>
 
