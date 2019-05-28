@@ -1,4 +1,5 @@
 import {Directive, ElementRef, Renderer, Input} from '@angular/core';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 @Directive({
    selector: '[ion-refresh-native]', // Attribute selector
@@ -26,13 +27,14 @@ export class IonRefreshNative {
    public progress;
    public rotation;
 
-   constructor(public element : ElementRef, public renderer : Renderer) {}
+   constructor(public element : ElementRef, public renderer : Renderer, public navCtrl: NavController) {}
 
    handleStart(event) {
+      const contentElement = this.navCtrl.getActive().getIONContentRef().nativeElement;
       if (!this.ionPulling || !this.ionPullingIcon || !this.ionRefreshing) {
-         this.ionPulling = this.element.nativeElement.getElementsByClassName('refresher-pulling-icon')[0];
-         this.ionPullingIcon = document.querySelector('.refresher-pulling-icon > ion-icon');
-         this.ionRefreshing = this.element.nativeElement.getElementsByClassName('refresher-refreshing')[0];
+         this.ionPulling = contentElement.getElementsByClassName('refresher-pulling-icon')[0];
+         this.ionPullingIcon = contentElement.querySelector('.refresher-pulling-icon > ion-icon');
+         this.ionRefreshing = contentElement.getElementsByClassName('refresher-refreshing')[0];
       }
    }
 
