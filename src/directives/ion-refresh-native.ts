@@ -12,6 +12,7 @@ import { Refresher } from 'ionic-angular/umd/components/refresher/refresher';
 })
 export class IonRefreshNative {
    @Input('ion-refresh-position') ionRefreshPosition: number;
+   @Input('refresh-timeout') refreshTimeout: number;
 
    private STATE = {
       comleting: 'completing',
@@ -45,7 +46,7 @@ export class IonRefreshNative {
    handlePull(event) {
       this.progress = event.progress * event.pullMin + event.deltaY;
       this.rotation = this.progress * 2;
-      this.ionRefreshPosition = this.ionRefreshPosition ? this.ionRefreshPosition : 55;
+      this.ionRefreshPosition = this.ionRefreshPosition || 55;
       if (this.progress < event.pullMax) {
          this.setStyle(
                this.ionPulling,
@@ -71,9 +72,11 @@ export class IonRefreshNative {
             );
       }
       clearTimeout(this.pullTimeout);
-      this.pullTimeout = setTimeout(() => {
-        this.ionRefresher.cancel();
-      }, 5000);
+      if (typeof this.ionRefresher !== 'undefined') {
+         this.pullTimeout = setTimeout(() => {
+            this.ionRefresher.cancel();
+          }, this.refreshTimeout || 3000);
+      }
    }
 
    handleRefresh(event) {
