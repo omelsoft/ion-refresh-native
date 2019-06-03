@@ -50,14 +50,17 @@ Now add the `ion-refresh-native` attribute in the `ion-refresher` component.
 
 </ion-content>
 ```
-
+(Optional) In order to take advantage of the pull timeout functionality, you must declare the variable in your .ts.
+```typescript
+@ViewChild(Refresher) ionRefresher: Refresher;
+```
 ### Inputs ###
 
 `ion-refresh-position` (optional) Allows you to manually set the position of the icon when the refreshing state kicks off. **Default** is 55.
-
+`refresh-timeout` (optional) Allows you to manually set the timeout (in ms) before the refresher is automatically cancelled if position is not changed. **Default** is 3000.
 
 ```html
-<ion-refresher ion-refresh-position="55" ion-refresh-native (ionRefresh)="doRefresh($event)"></ion-refresher>
+<ion-refresher ion-refresh-position="55" refresh-timeout="3000" ion-refresh-native (ionRefresh)="doRefresh($event)"></ion-refresher>
 ```
 
 ### Demo ###
