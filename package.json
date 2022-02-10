@@ -36,7 +36,7 @@
 		"@types/node": "^9.4.6",
 		"copyfiles": "^2.1.0",
 		"ionic-angular": "3.9.2",
-		"node-sass": "^4.10.0",
+		"node-sass": "^7.0.0",
 		"rxjs": "5.5.2",
 		"typescript": "2.4.2",
 		"zone.js": "0.8.18"
